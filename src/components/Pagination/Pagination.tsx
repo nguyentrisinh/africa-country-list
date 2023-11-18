@@ -12,8 +12,8 @@ const Pagination: FC<PaginationProps> = ({ page, total, onClick }) => {
   return (
     <ul className="Pagination">
       {page && page !== 1 && (
-        <li onClick={() => onClick?.(1)}>
-          <div className="Pagination__Item">Previous</div>
+        <li onClick={() => onClick?.(page - 1)}>
+          <div className="Pagination__Item Pagination__Item--PrevButton">Previous</div>
         </li>
       )}
       {Array(total)
@@ -30,7 +30,7 @@ const Pagination: FC<PaginationProps> = ({ page, total, onClick }) => {
           </li>
         ))}
       {page && total && page !== total && (
-        <li onClick={() => onClick?.(total)}>
+        <li onClick={() => onClick?.(page + 1)}>
           <div className="Pagination__Item Pagination__Item--NextButton">Next</div>
         </li>
       )}
