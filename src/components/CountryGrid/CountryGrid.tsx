@@ -21,9 +21,10 @@ const CountryGrid: FC<CountryGridProps> = ({ data }) => {
             <div className="CountryGrid__Column">
               {Array(range)
                 .fill('')
-                .map((_, j) => (
-                  <CountryCard data={data[i * range + j]} />
-                ))}
+                .map((_, j) => {
+                  const countryData = data[i * range + j];
+                  return countryData && <CountryCard data={countryData} />;
+                })}
             </div>
           );
         })}

@@ -30,7 +30,9 @@
 
 .CountryCard__Table td {
   width: 100%;
+  vertical-align: top;
 }
 .CountryCard__Table th {
   text-align: left;
+  vertical-align: top;
 }
