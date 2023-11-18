@@ -3,7 +3,7 @@ import './Pagination.css';
 import { FC } from 'react';
 
 export type PaginationProps = {
-  page?: number | null;
+  page?: number;
   total?: number;
   onClick?: (page: number) => void;
 };

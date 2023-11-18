@@ -13,6 +13,7 @@ function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const pageParam = searchParams.get('page');
   const [page, setPage] = useState<number>(pageParam ? (isNaN(+pageParam) ? 1 : +pageParam) : 1);
+  const [total, setTotal] = useState<number | undefined>();
   const [data, setData] = useState<TCountry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
@@ -23,6 +24,7 @@ function App() {
       .then((response) => {
         setData(response?.data || []);
         setMessage('Successfully!');
+        setTotal(response?.total);
       })
       .finally(() => setLoading(false));
     if (window.history.pushState) {
@@ -38,7 +40,7 @@ function App() {
       <div className="App__Pagination">
         <Pagination
           page={page}
-          total={7}
+          total={total ? Math.ceil(total / 9) : undefined}
           onClick={(page) => {
             setPage(page);
           }}
