@@ -9,6 +9,7 @@ export type PaginationProps = {
 };
 
 const Pagination: FC<PaginationProps> = ({ page, total, onClick }) => {
+  if (!total) return null;
   return (
     <ul className="Pagination">
       {page && page !== 1 && (
