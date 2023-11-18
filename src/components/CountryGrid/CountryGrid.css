@@ -1,0 +1,10 @@
+.CountryGrid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 1rem;
+    display: grid;
+}
+
+.CountryGrid__Column {
+    gap: 1rem;
+    display: grid;
+}

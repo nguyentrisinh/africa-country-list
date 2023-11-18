@@ -1,0 +1,9 @@
+.Notification {
+    position: fixed;
+    right: 20px;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: white;
+}

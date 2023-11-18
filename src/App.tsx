@@ -1,33 +1,51 @@
 import './App.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import viteLogo from '/vite.svg';
-
-import reactLogo from './assets/react.svg';
+import Container from './components/Container/Container.tsx';
+import CountryGrid from './components/CountryGrid/CountryGrid.tsx';
+import Notification from './components/Notification/Notification.tsx';
+import Pagination from './components/Pagination/Pagination.tsx';
+import { TCountry } from './models/Country.ts';
+import { getCountries } from './services/api.ts';
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const searchParams = new URLSearchParams(window.location.search);
+  const pageParam = searchParams.get('page');
+  const [page, setPage] = useState<number>(pageParam ? (isNaN(+pageParam) ? 1 : +pageParam) : 1);
+  const [data, setData] = useState<TCountry[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+  useEffect(() => {
+    setLoading(true);
+    setMessage('');
+    getCountries(page)
+      .then((response) => {
+        setData(response?.data || []);
+        setMessage('Successfully!');
+      })
+      .finally(() => setLoading(false));
+    if (window.history.pushState) {
+      const newurl =
+        window.location.protocol + '//' + window.location.host + window.location.pathname + `?page=${page}`;
+      window.history.pushState({ path: newurl }, '', newurl);
+    }
+  }, [page]);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Container>
+      <h1 className="App__Header">Africa countries</h1>
+      {loading ? 'Loading ... ' : <CountryGrid data={data} />}
+      <div className="App__Pagination">
+        <Pagination
+          page={page}
+          total={7}
+          onClick={(page) => {
+            setPage(page);
+          }}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+      <Notification>{message}</Notification>
+    </Container>
   );
 }
 
