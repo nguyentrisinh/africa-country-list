@@ -1,15 +1,15 @@
-import './App.css';
+import './Home.css';
 
 import { useEffect, useState } from 'react';
 
-import Container from './components/Container/Container.tsx';
-import CountryGrid from './components/CountryGrid/CountryGrid.tsx';
-import Notification from './components/Notification/Notification.tsx';
-import Pagination from './components/Pagination/Pagination.tsx';
-import { TCountry } from './models/Country.ts';
-import { getCountries } from './services/api.ts';
+import Container from '../../components/Container/Container.tsx';
+import CountryGrid from '../../components/CountryGrid/CountryGrid.tsx';
+import Notification from '../../components/Notification/Notification.tsx';
+import Pagination from '../../components/Pagination/Pagination.tsx';
+import { TCountry } from '../../models/Country.ts';
+import { getCountries } from '../../services/api.ts';
 
-function App() {
+function Home() {
   const searchParams = new URLSearchParams(window.location.search);
   const pageParam = searchParams.get('page');
   const [page, setPage] = useState<number>(pageParam ? (isNaN(+pageParam) ? 1 : +pageParam) : 1);
@@ -51,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

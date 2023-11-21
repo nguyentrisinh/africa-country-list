@@ -1,10 +1,16 @@
 import { TCountriesResponse } from '../models/CountriesResponse.ts';
+import { TCountry } from '../models/Country.ts';
 import { getRandomArbitrary, mockImage } from '../utils/mockImage.ts';
-import data from './data.json';
+import rawData from './data.json';
 const sleep = (time: number) =>
   new Promise((rs) => {
     setTimeout(() => rs(''), time);
   });
+
+const data = rawData.map((item) => ({
+  ...item,
+  image: mockImage(400, getRandomArbitrary(300, 800)),
+}));
 
 export const getCountries = async (page: number): Promise<TCountriesResponse | undefined> => {
   await sleep(1000);
@@ -14,9 +20,11 @@ export const getCountries = async (page: number): Promise<TCountriesResponse | u
   return {
     page,
     total: data.length,
-    data: data.slice(index * 9, page * 9).map((data) => ({
-      ...data,
-      image: mockImage(400, getRandomArbitrary(300, 800)),
-    })),
+    data: data.slice(index * 9, page * 9),
   };
+};
+
+export const getCountry = async (countryCode?: string): Promise<TCountry | undefined> => {
+  await sleep(1000);
+  return data.find(({ code }) => code === countryCode);
 };

@@ -1,6 +1,7 @@
 import './CountryCard.css';
 
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { TCountry } from '../../models/Country.ts';
 
@@ -10,7 +11,7 @@ export type CountryCardProps = {
 
 const CountryCard: FC<CountryCardProps> = ({ data }) => {
   return (
-    <div className="CountryCard">
+    <Link to={`/countries/${data.code}`} className="CountryCard">
       <img className="CountryCard__Image" src={data.image} />
       <div className="CountryCard__Description">
         <table className="CountryCard__Table">
@@ -26,7 +27,7 @@ const CountryCard: FC<CountryCardProps> = ({ data }) => {
           </tbody>
         </table>
       </div>
-    </div>
+    </Link>
   );
 };
 

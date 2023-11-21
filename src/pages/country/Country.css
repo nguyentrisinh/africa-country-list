@@ -1,0 +1,21 @@
+.Country {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Country__Img {
+  border-radius: 1rem;
+}
+
+.Country__Button {
+  align-self: start;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: gray;
+  color: white;
+}
