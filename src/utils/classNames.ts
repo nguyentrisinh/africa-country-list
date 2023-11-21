@@ -5,7 +5,7 @@ export const classNames = (
     .map((item) => {
       if (!item) return '';
       if (['string', 'boolean'].includes(typeof item)) {
-        return item;
+        return item.toString();
       }
       if (Array.isArray(item)) {
         return classNames(...item);
