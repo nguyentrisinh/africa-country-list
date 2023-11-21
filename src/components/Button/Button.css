@@ -1,0 +1,18 @@
+.Button {
+  align-self: start;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: lightgray;
+}
+
+.Button--Success {
+  background: seagreen;
+  color: white;
+}
+
+.Button--Error {
+  background: indianred;
+  color: white;
+}

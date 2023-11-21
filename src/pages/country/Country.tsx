@@ -3,6 +3,7 @@ import './Country.css';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import Button from '../../components/Button/Button.tsx';
 import Container from '../../components/Container/Container.tsx';
 import { TCountry } from '../../models/Country.ts';
 import { getCountry } from '../../services/api.ts';
@@ -23,14 +24,14 @@ const Country: FC<CountryProps> = () => {
   return (
     <Container>
       <div className="Country">
-        <button
+        <Button
           className="Country__Button"
           onClick={() => {
             navigate(-1);
           }}
         >
           Back
-        </button>
+        </Button>
         <h1>{country.country}</h1>
         <h2>Code: {country.code}</h2>
         <img src={country.image} className="Country__Img" />

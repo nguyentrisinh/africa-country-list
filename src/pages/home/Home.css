@@ -1,17 +1,25 @@
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-.App__Pagination {
-    margin-top: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.Home__Pagination {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.App__Header {
-    text-align: center;
+.Home__Header {
+  text-align: center;
+}
+
+.Home__ButtonGroup {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    margin-bottom: 1rem;
 }
