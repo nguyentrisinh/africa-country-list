@@ -4,7 +4,7 @@ export const classNames = (
   return args
     .map((item) => {
       if (!item) return '';
-      if (typeof item === 'string') {
+      if (['string', 'boolean'].includes(typeof item)) {
         return item;
       }
       if (Array.isArray(item)) {
