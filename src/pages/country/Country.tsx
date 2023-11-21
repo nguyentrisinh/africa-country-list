@@ -14,12 +14,18 @@ const Country: FC<CountryProps> = () => {
   const { countryCode } = useParams();
   const navigate = useNavigate();
   const [country, setCountry] = useState<TCountry>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getCountry(countryCode).then(setCountry);
+    setLoading(true);
+    getCountry(countryCode)
+      .then(setCountry)
+      .finally(() => setLoading(false));
   }, []);
 
-  if (!country) return null;
+  if (loading) return <Container>Loading...</Container>;
+
+  if (!country) return <Container>Not found</Container>;
 
   return (
     <Container>
